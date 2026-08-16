@@ -14,13 +14,12 @@ sites:
   - name: CognitionSync
     url: https://cognitionsync.com
 
-  # The apex is canonical and www must keep redirecting to it. If this ever
-  # stops returning 301, the search consolidation breaks silently, so it is
-  # worth an explicit check rather than assuming.
-  - name: CognitionSync (www redirect)
+  # Upptime follows redirects, so this lands on the apex and returns 200.
+  # It confirms www still resolves and serves for visitors. It does NOT
+  # verify the response is specifically a 301; expecting 301 here would
+  # always fail because the final status is what gets recorded.
+  - name: CognitionSync (www)
     url: https://www.cognitionsync.com
-    expectedStatusCodes:
-      - 301
 
   - name: AxiomSquare
     url: https://axiomsquare.cognitionsync.com
