@@ -6,13 +6,16 @@
 owner: cognitionsync
 repo: uptime
 
-# Downtime opens a GitHub issue. Assigning it means it reaches a person.
+# Fallback owner. Each site below sets its own assignee, so this only applies
+# if a new site is added without one.
 assignees:
   - akifejaz
 
 sites:
   - name: CognitionSync
     url: https://cognitionsync.com
+    assignees:
+      - akifejaz
 
   # Upptime follows redirects, so this lands on the apex and returns 200.
   # It confirms www still resolves and serves for visitors. It does NOT
@@ -20,29 +23,45 @@ sites:
   # always fail because the final status is what gets recorded.
   - name: CognitionSync (www)
     url: https://www.cognitionsync.com
+    assignees:
+      - akifejaz
 
   - name: AxiomSquare
     url: https://axiomsquare.cognitionsync.com
+    assignees:
+      - asifejjaz
 
   - name: AxiomSquare Guides
     url: https://axiomsquare.cognitionsync.com/guides/
+    assignees:
+      - asifejjaz
 
   - name: PraTax
     url: https://pra.axiomsquare.cognitionsync.com
+    assignees:
+      - asifejjaz
 
   - name: BuildingMall
     url: https://buildingmall.cognitionsync.com
+    assignees:
+      - asifejjaz
 
   # A real application route rather than the shell, so this fails if the
   # backend stops answering even while nginx still serves a page.
   - name: BuildingMall Materials
     url: https://buildingmall.cognitionsync.com/materials
+    assignees:
+      - asifejjaz
 
   - name: CognitionSync Labs
     url: https://demos.cognitionsync.com
+    assignees:
+      - asifejjaz
 
   - name: DocuMind
     url: https://documind.cognitionsync.com
+    assignees:
+      - asifejjaz
 
 status-website:
   # GitHub Pages already serves this repo at cognitionsync.github.io/uptime.
