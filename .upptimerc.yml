@@ -1,31 +1,64 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# CognitionSync status monitoring, powered by Upptime.
+#
+# Checks run on GitHub Actions every 5 minutes. Do NOT edit anything in
+# .github/workflows/ directly; those files are regenerated from this config.
+
+owner: cognitionsync
+repo: uptime
+
+# Downtime opens a GitHub issue. Assigning it means it reaches a person.
+assignees:
+  - akifejaz
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: CognitionSync
+    url: https://cognitionsync.com
+
+  # The apex is canonical and www must keep redirecting to it. If this ever
+  # stops returning 301, the search consolidation breaks silently, so it is
+  # worth an explicit check rather than assuming.
+  - name: CognitionSync (www redirect)
+    url: https://www.cognitionsync.com
+    expectedStatusCodes:
+      - 301
+
+  - name: AxiomSquare
+    url: https://axiomsquare.cognitionsync.com
+
+  - name: AxiomSquare Guides
+    url: https://axiomsquare.cognitionsync.com/guides/
+
+  - name: PraTax
+    url: https://pra.axiomsquare.cognitionsync.com
+
+  - name: BuildingMall
+    url: https://buildingmall.cognitionsync.com
+
+  # A real application route rather than the shell, so this fails if the
+  # backend stops answering even while nginx still serves a page.
+  - name: BuildingMall Materials
+    url: https://buildingmall.cognitionsync.com/materials
+
+  - name: CognitionSync Labs
+    url: https://demos.cognitionsync.com
+
+  - name: DocuMind
+    url: https://documind.cognitionsync.com
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  # GitHub Pages already serves this repo at cognitionsync.github.io/uptime.
+  # To use a custom domain instead: remove baseUrl, set
+  #   cname: status.cognitionsync.com
+  # and add a DNS CNAME for `status` pointing to cognitionsync.github.io
+  baseUrl: /uptime
+  logoUrl: https://cognitionsync.com/favicon.svg
+  name: CognitionSync Status
+  introTitle: "**CognitionSync** service status"
+  introMessage: Live availability and response times for cognitionsync.com and every product we run. Checks run every five minutes from GitHub Actions, independently of our own servers, so this page stays up even when they do not.
   navbar:
     - title: Status
       href: /
+    - title: Website
+      href: https://cognitionsync.com
     - title: GitHub
-      href: https://github.com/$OWNER/$REPO
-
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+      href: https://github.com/cognitionsync
