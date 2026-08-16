@@ -63,6 +63,12 @@ sites:
     assignees:
       - asifejjaz
 
+  # Personal site, not a CognitionSync property, monitored alongside them.
+  - name: Akif Ejaz
+    url: https://akifejaz.dev
+    assignees:
+      - akifejaz
+
 status-website:
   # GitHub Pages already serves this repo at cognitionsync.github.io/uptime.
   # To use a custom domain instead: remove baseUrl, set
