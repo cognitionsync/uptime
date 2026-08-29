@@ -63,6 +63,11 @@ sites:
     assignees:
       - asifejjaz
 
+  - name: csfunnel
+    url: https://csfunnel.cognitionsync.com
+    assignees:
+      - akifejaz
+
   # Personal site, not a CognitionSync property, monitored alongside them.
   - name: Akif Ejaz
     url: https://akifejaz.dev
