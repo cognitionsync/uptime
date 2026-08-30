@@ -12,32 +12,63 @@ assignees:
   - akifejaz
 
 sites:
+  # ===========================================================================
+  # Live applications
+  #
+  # Every entry points at a route the application itself renders.
+  #
+  # Do NOT monitor /health. Every vhost answers it with a static 200 from nginx
+  # rather than from the app behind it, so a /health monitor stays green through
+  # a total application outage.
+  # ===========================================================================
+
   - name: CognitionSync
     url: https://cognitionsync.com
     assignees:
       - akifejaz
 
-  # Upptime follows redirects, so this lands on the apex and returns 200.
-  # It confirms www still resolves and serves for visitors. It does NOT
-  # verify the response is specifically a 301; expecting 301 here would
-  # always fail because the final status is what gets recorded.
-  - name: CognitionSync (www)
-    url: https://www.cognitionsync.com
-    assignees:
-      - akifejaz
-
+  # AxiomSquare and PraTax moved to their own apex domain. These monitor the
+  # canonical hosts, not the old cognitionsync.com subdomains, because those
+  # only issue a 301 and a check against them reports on the redirect rather
+  # than on the application. The old names are still checked further down.
   - name: AxiomSquare
-    url: https://axiomsquare.cognitionsync.com
+    url: https://axiomsquarepk.com
     assignees:
       - asifejjaz
 
   - name: AxiomSquare Guides
-    url: https://axiomsquare.cognitionsync.com/guides/
+    url: https://axiomsquarepk.com/guides/
+    assignees:
+      - asifejjaz
+
+  - name: AxiomSquare Tools
+    url: https://axiomsquarepk.com/tools/
+    assignees:
+      - asifejjaz
+
+  # The front end is a static bundle, so every page keeps returning 200 even if
+  # the API container has stopped. This checks the API separately.
+  #
+  # 404 is the healthy result: an unrouted /api/ path is answered by the backend
+  # itself with a JSON body, which proves the process is alive and routing. If
+  # the backend dies, nginx answers with 502 instead and this goes red.
+  - name: AxiomSquare API
+    url: https://axiomsquarepk.com/api/
+    expectedStatusCodes:
+      - 404
     assignees:
       - asifejjaz
 
   - name: PraTax
-    url: https://pra.axiomsquare.cognitionsync.com
+    url: https://pra.axiomsquarepk.com
+    assignees:
+      - asifejjaz
+
+  # Same reasoning as the AxiomSquare API check above.
+  - name: PraTax API
+    url: https://pra.axiomsquarepk.com/api/
+    expectedStatusCodes:
+      - 404
     assignees:
       - asifejjaz
 
@@ -58,6 +89,24 @@ sites:
     assignees:
       - asifejjaz
 
+  # Separate applications that happen to be served under paths on the demos
+  # host. Each runs its own process, so the demos index being up says nothing
+  # about whether these are.
+  - name: Quarlux Portfolio
+    url: https://demos.cognitionsync.com/quarlux/
+    assignees:
+      - asifejjaz
+
+  - name: DocuMind Landing
+    url: https://demos.cognitionsync.com/documind/
+    assignees:
+      - asifejjaz
+
+  - name: Quarlux Power Control
+    url: https://quarlux-ai.cognitionsync.com
+    assignees:
+      - asifejjaz
+
   - name: DocuMind
     url: https://documind.cognitionsync.com
     assignees:
@@ -68,7 +117,56 @@ sites:
     assignees:
       - akifejaz
 
-  # Personal site, not a CognitionSync property, monitored alongside them.
+  - name: RISC-V Jobs
+    url: https://allriscvjobs.cognitionsync.com
+    assignees:
+      - akifejaz
+
+  # The listing route, which has to reach the job data to render. The home page
+  # alone would still come up if that stopped working.
+  - name: RISC-V Jobs Listings
+    url: https://allriscvjobs.cognitionsync.com/jobs
+    assignees:
+      - akifejaz
+
+  # ===========================================================================
+  # Redirect-only hostnames
+  #
+  # These serve no application. nginx answers them itself with a 301. They are
+  # worth checking because each holds its own certificate: if one stops
+  # renewing, visitors hit a TLS error before the redirect can ever fire.
+  #
+  # Upptime follows redirects, so what these record is the status after the hop.
+  # That confirms the hostname still resolves, still presents a valid
+  # certificate, and still lands somewhere that works. It does NOT verify the
+  # response is specifically a 301; expecting 301 here would always fail,
+  # because the final status is what gets recorded.
+  # ===========================================================================
+
+  - name: CognitionSync (www)
+    url: https://www.cognitionsync.com
+    assignees:
+      - akifejaz
+
+  - name: AxiomSquare (www)
+    url: https://www.axiomsquarepk.com
+    assignees:
+      - asifejjaz
+
+  - name: AxiomSquare (old subdomain)
+    url: https://axiomsquare.cognitionsync.com
+    assignees:
+      - asifejjaz
+
+  - name: PraTax (old subdomain)
+    url: https://pra.axiomsquare.cognitionsync.com
+    assignees:
+      - asifejjaz
+
+  # ===========================================================================
+  # Not a CognitionSync property, monitored alongside them
+  # ===========================================================================
+
   - name: Akif Ejaz
     url: https://akifejaz.dev
     assignees:
