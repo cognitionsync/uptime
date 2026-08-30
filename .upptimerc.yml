@@ -75,11 +75,17 @@ sites:
       - akifejaz
 
 status-website:
-  # GitHub Pages already serves this repo at cognitionsync.github.io/uptime.
-  # To use a custom domain instead: remove baseUrl, set
-  #   cname: status.cognitionsync.com
-  # and add a DNS CNAME for `status` pointing to cognitionsync.github.io
-  baseUrl: /uptime
+  # Served at https://status.cognitionsync.com from the gh-pages branch.
+  #
+  # `cname` makes the site build write a CNAME file into the deploy output on
+  # every run. It has to stay here: the deploy step publishes with
+  # keep_files disabled, so any CNAME added by hand through the GitHub Pages
+  # settings UI gets deleted on the next build and the custom domain drops.
+  #
+  # There is deliberately no baseUrl. The site is served from the domain root,
+  # so a baseUrl of /uptime would point every asset and link at a path that
+  # does not exist and the page would come up blank.
+  cname: status.cognitionsync.com
   logoUrl: https://cognitionsync.com/favicon.svg
   name: CognitionSync Status
   introTitle: "**CognitionSync** service status"
