@@ -1,4 +1,4 @@
-# [CognitionSync Status](https://cognitionsync.github.io/uptime): <!--live status--> **🟩 All systems operational**
+# [CognitionSync Status](https://status.cognitionsync.com): <!--live status--> **🟩 All systems operational**
 
 Uptime monitoring for CognitionSync and our products. Checks run every five
 minutes from GitHub Actions, independently of our own servers.
